@@ -613,7 +613,7 @@ const galleryData = {
 
   {/* GALLERY */}
   <div className="gallery">
-  {galleryData[activeTab].map((img, i) => (
+  {galleryData[activeTab as any].map((img, i) => (
     <a
       key={i}
       href={galleryLinks[activeTab][i] || "#"}
