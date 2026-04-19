@@ -3,9 +3,20 @@ import React from "react";
 
 
 export default function NikitaPortfolio() {
-    const [activeTab, setActiveTab] = React.useState("projects");
+    
+    const tabs = [
+  { key: "projects", label: "Projects" },
+  { key: "influencer", label: "Influencer Marketing" },
+  { key: "promotions", label: "Promotions" },
+  { key: "results", label: "Results" },
+] as const;
 
-    const galleryLinks = {
+type TabKey = typeof tabs[number]["key"];
+
+
+const [activeTab, setActiveTab] = React.useState<TabKey>("projects");
+
+    const galleryLinks: Record<TabKey, string[]> ={
   projects: [
     "https://www.instagram.com/the.galleria.mall/", "https://www.instagram.com/awesomeanalytics/", "https://www.instagram.com/awesomeinvesting/", "https://www.instagram.com/officesolutionsmea/", "https://www.instagram.com/rarch_architects/", "https://www.instagram.com/yarnsoftheeast/", "https://www.instagram.com/chandibhandarofficial/", "https://www.instagram.com/owwaterpark/", "https://www.instagram.com/naturals_signature_salon/"
   ],
@@ -20,7 +31,7 @@ export default function NikitaPortfolio() {
   ],
 };
 
-const galleryData = {
+const galleryData: Record<TabKey, string[]> ={
   projects: [
     "/images/work1.jpg",
     "/images/work2.jpg",
@@ -584,12 +595,7 @@ const galleryData = {
     marginBottom: "50px",
     flexWrap: "wrap"
   }}>
-    {[
-      { key: "projects", label: "Projects" },
-      { key: "influencer", label: "Influencer Marketing" },
-      { key: "promotions", label: "Promotions" },
-      { key: "results", label: "Results" },
-    ].map((item) => (
+    {tabs.map((item) => (
       <div
         key={item.key}
         onClick={() => setActiveTab(item.key)}
@@ -613,7 +619,7 @@ const galleryData = {
 
   {/* GALLERY */}
   <div className="gallery">
-  {galleryData[activeTab as any].map((img, i) => (
+  {galleryData[activeTab].map((img, i) => (
     <a
       key={i}
       href={galleryLinks[activeTab][i] || "#"}
