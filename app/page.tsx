@@ -1,5 +1,6 @@
 "use client";
 import React from "react";
+import Head from "next/head";
 
 
 export default function NikitaPortfolio() {
@@ -78,6 +79,9 @@ const galleryData: Record<TabKey, string[]> ={
   return (
   
     <>
+    <Head>
+        <title>Nikita's Portfolio</title>
+      </Head>
       <style jsx global>{`
         *{margin:0;padding:0;box-sizing:border-box;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto}
         body{background:#0f0f0f;color:white;overflow-x:hidden}
